@@ -165,7 +165,7 @@ output/
 # Environment variables
 # .env
 temp*
+prod_*
 
 # KGKs variables
-settings.py
 sample
