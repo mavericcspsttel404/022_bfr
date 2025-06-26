@@ -113,7 +113,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-# .env
 .venv
 env/
 venv/
@@ -163,7 +162,7 @@ logs/
 output/
 
 # Environment variables
-# .env
+.env
 temp*
 prod_*
 

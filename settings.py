@@ -1,6 +1,8 @@
 import logging
 import os
 
+# Load secrets from environment variables
+
 BASE_PATH = os.path.dirname(__file__)
 PATH_TO_REPORTS = os.path.join(BASE_PATH, "spreadsheets")
 PATH_TO_LOGS = os.path.join(BASE_PATH, "logs\\reports.log")
@@ -9,27 +11,25 @@ PATH_DVA_BY_HUB_REPORT = (
 )
 
 BASE_URL = "http://10.0.20.53:8080" 
-ALFRESCO_CREDENTIALS = "admin", "Admin 1024"
+ALFRESCO_CREDENTIALS = os.getenv("ALFRESCO_USERNAME"), os.getenv("ALFRESCO_PASSWORD")
 
-SPIKE_ALERT_WEBHOOK = "https://hooks.spike.sh/53ba64/push-events"
+SPIKE_ALERT_WEBHOOK = os.getenv("SPIKE_ALERT_WEBHOOK")
 SPIKE_ALERT_TITLE = "Breakfast Report Incident"
 
-SALESFORCE_USERNAME = "companyapi@company.co.za"
-SALESFORCE_PASSWORD = "mYveh9"
-SALESFORCE_CLIENT_ID = "3MVG9tzXBVPH"
-SALESFORCE_CLIENT_SECRET = (
-    "C17DDE3"
-)
+SALESFORCE_USERNAME = os.getenv("SALESFORCE_USERNAME")
+SALESFORCE_PASSWORD = os.getenv("SALESFORCE_PASSWORD")
+SALESFORCE_CLIENT_ID = os.getenv("SALESFORCE_CLIENT_ID")
+SALESFORCE_CLIENT_SECRET = os.getenv("SALESFORCE_CLIENT_SECRET")
 SALESFORCE_LOGIN_URL = "https://login.salesforce.com/services/oauth2/token"
 
 
 # DB Connection Strings
-DB_COL06_companyTNTV1 = "DRIVER={SQL Server};SERVER=companysqlcol06;DATABASE=companyTnTv1;UID=companysqladmin;PWD=fkinchangeme;unicode_results=True"
-DB_COL10_companyTNTV1 = "DRIVER={SQL Server};SERVER=companysqlcol10;DATABASE=companyTnTv1;UID=companysqladmin;PWD=fkinchangeme;unicode_results=True"
-DB_COL07_UAT_companyTNTV1 = "DRIVER={SQL Server};SERVER=companysqlcol07-uat;DATABASE=companyTnTv1;UID=companysqladmin;PWD=fkinchangeme;unicode_results=True"
-DB_COL07_companyTNTV1 = "DRIVER={SQL Server};SERVER=companysqlcol07;DATABASE=companyTnTv1;UID=companysqladmin;PWD=fkinchangeme;unicode_results=True"
-DB_DW_UAT_REPORTING = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=UATSQLINSTANCE;DATABASE=Reporting;UID=companysqladmin;PWD=fkinchangeme2019;unicode_results=True"
-DB_DW_REPORTING = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=PRODSQLINSTANCE;DATABASE=Reporting;UID=companysqladmin;PWD=fkinchangeme2020;unicode_results=True"
+DB_COL06_companyTNTV1 = os.getenv("DB_COL06_companyTNTV1")
+DB_COL10_companyTNTV1 = os.getenv("DB_COL10_companyTNTV1")
+DB_COL07_UAT_companyTNTV1 = os.getenv("DB_COL07_UAT_companyTNTV1")
+DB_COL07_companyTNTV1 = os.getenv("DB_COL07_companyTNTV1")
+DB_DW_UAT_REPORTING = os.getenv("DB_DW_UAT_REPORTING")
+DB_DW_REPORTING = os.getenv("DB_DW_REPORTING")
 
 # Logging Config
 LOG_LEVEL = logging.DEBUG
