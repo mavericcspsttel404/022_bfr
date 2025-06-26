@@ -8,6 +8,9 @@
    1. uv sync
    2. .venv\Scripts\activate.bat
    3. uv run main.py
+   
+Before running the app you should create a `.env` file based on `.env.example` 
+and set the required credentials and database connection strings.
 
 ## Initial thought process
 
