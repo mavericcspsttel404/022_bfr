@@ -20,6 +20,11 @@ def say_hello(name: str) -> str:
     return f"👋 Hello, {name}!"
 
 
+def k_add(x: int, y: int) -> int:
+    """Adds two integers."""
+    return x + y
+
+
 def main() -> None:
     logger.info("🍽️ Breakfast report app started!")
     message = say_hello("Functional Programmer")

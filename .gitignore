@@ -7,6 +7,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.ruff_cache
 spreadsheets/*
 spreadsheets/QMReport-2020 Jul 26.xlsx
 spreadsheets\\QMReport-2020 Jul 26.xlsx

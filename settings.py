@@ -1,6 +1,18 @@
 import logging
 import os
 
+# Load environment variables
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# TEST_IMPORTS = os.getenv("TEST_IMPORTS", "False").lower() == "true"
+TEST_IMPORTS = os.getenv("TEST_IMPORTS")
+TEST_IMPORTS_TEXT = os.getenv("TEST_IMPORTS_TEXT")
+TEST_IMPORTS_INT = os.getenv("TEST_IMPORTS_INT")
+print("TEST_IMPORTS_TEXT ", TEST_IMPORTS_TEXT)
+print("TEST_IMPORTS_INT ", TEST_IMPORTS_INT)
+
 # Load secrets from environment variables
 
 BASE_PATH = os.path.dirname(__file__)
@@ -10,7 +22,7 @@ PATH_DVA_BY_HUB_REPORT = (
     r"//10.0.20.55/Reports/Breakfast/Delivery Vehicle Arrival By Hub.xlsx"
 )
 
-BASE_URL = "http://10.0.20.53:8080" 
+BASE_URL = "http://10.0.20.53:8080"
 ALFRESCO_CREDENTIALS = os.getenv("ALFRESCO_USERNAME"), os.getenv("ALFRESCO_PASSWORD")
 
 SPIKE_ALERT_WEBHOOK = os.getenv("SPIKE_ALERT_WEBHOOK")

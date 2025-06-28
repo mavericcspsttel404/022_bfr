@@ -3,6 +3,14 @@
 ## How to use
 
 1. Make sure you have uv preinstalled
+    - WINdows
+    ```code
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+    ```
+    - LINux
+    ```code
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
 2. Clone the project
 3. Open terminal and input below commands in order
    1. uv sync

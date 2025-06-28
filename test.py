@@ -11,7 +11,7 @@ conn_str = (
 
 # Example stored procedure and parameters
 proc_name = "YourStoredProcedureName"
-params = [param1, param2]  # Replace with actual parameters or leave empty if none
+params = ["param1", "param2"]  # Replace with actual parameters or leave empty if none
 
 df = exec_stored_procedure_to_df(conn_str, proc_name, params)
 print(df)
