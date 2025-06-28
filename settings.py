@@ -1,32 +1,23 @@
-import logging
 import os
+import sys
 
-# Load environment variables
 from dotenv import load_dotenv
 
+# Load environment variables
+if "prod" in [arg.lower() for arg in sys.argv]:
+    load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env.prod"))
+else:
+    load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env.uat"))
 load_dotenv()
 
-# TEST_IMPORTS = os.getenv("TEST_IMPORTS", "False").lower() == "true"
+### Imports to make sure dotenv library works as expected
 TEST_IMPORTS = os.getenv("TEST_IMPORTS")
 TEST_IMPORTS_TEXT = os.getenv("TEST_IMPORTS_TEXT")
 TEST_IMPORTS_INT = os.getenv("TEST_IMPORTS_INT")
-print("TEST_IMPORTS_TEXT ", TEST_IMPORTS_TEXT)
-print("TEST_IMPORTS_INT ", TEST_IMPORTS_INT)
 
-# Load secrets from environment variables
-
-BASE_PATH = os.path.dirname(__file__)
-PATH_TO_REPORTS = os.path.join(BASE_PATH, "spreadsheets")
-PATH_TO_LOGS = os.path.join(BASE_PATH, "logs\\reports.log")
-PATH_DVA_BY_HUB_REPORT = (
-    r"//10.0.20.55/Reports/Breakfast/Delivery Vehicle Arrival By Hub.xlsx"
-)
-
-BASE_URL = "http://10.0.20.53:8080"
+## Imported parameters
 ALFRESCO_CREDENTIALS = os.getenv("ALFRESCO_USERNAME"), os.getenv("ALFRESCO_PASSWORD")
-
 SPIKE_ALERT_WEBHOOK = os.getenv("SPIKE_ALERT_WEBHOOK")
-SPIKE_ALERT_TITLE = "Breakfast Report Incident"
 
 SALESFORCE_USERNAME = os.getenv("SALESFORCE_USERNAME")
 SALESFORCE_PASSWORD = os.getenv("SALESFORCE_PASSWORD")
@@ -34,94 +25,31 @@ SALESFORCE_CLIENT_ID = os.getenv("SALESFORCE_CLIENT_ID")
 SALESFORCE_CLIENT_SECRET = os.getenv("SALESFORCE_CLIENT_SECRET")
 SALESFORCE_LOGIN_URL = "https://login.salesforce.com/services/oauth2/token"
 
-
-# DB Connection Strings
-DB_COL06_companyTNTV1 = os.getenv("DB_COL06_companyTNTV1")
-DB_COL10_companyTNTV1 = os.getenv("DB_COL10_companyTNTV1")
-DB_COL07_UAT_companyTNTV1 = os.getenv("DB_COL07_UAT_companyTNTV1")
-DB_COL07_companyTNTV1 = os.getenv("DB_COL07_companyTNTV1")
-DB_DW_UAT_REPORTING = os.getenv("DB_DW_UAT_REPORTING")
+### DB Connection Strings
+DB_COL06 = os.getenv("DB_COL06")
+DB_COL07 = os.getenv("DB_COL07")
+DB_COL10 = os.getenv("DB_COL10")
 DB_DW_REPORTING = os.getenv("DB_DW_REPORTING")
 
-# Logging Config
-LOG_LEVEL = logging.DEBUG
-GRAYLOG_SERVER = "10.0.20.82"
-LOG_APP_NAME = "BreakfastReport"
+BASE_URL = os.getenv("BASE_URL")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
+GRAYLOG_SERVER = os.getenv("GRAYLOG_SERVER")
+GRAYLOG_PORT = os.getenv("GRAYLOG_PORT")
 
+## Hardcoded parameters
+### Logging Config
+BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+if "prod" in [arg.lower() for arg in sys.argv]:
+    LOG_APP_NAME = "BreakfastReport"
+    SPIKE_ALERT_TITLE = "Breakfast Report Incident"
+    PATH_TO_REPORTS = os.path.join(BASE_PATH, "output")
+    PATH_TO_LOGS = os.path.join(BASE_PATH, "logs")
+else:
+    LOG_APP_NAME = "BreakfastReport"
+    SPIKE_ALERT_TITLE = "Breakfast Report Incident"
+    PATH_TO_REPORTS = os.path.join(BASE_PATH, "output/uat")
+    PATH_TO_LOGS = os.path.join(BASE_PATH, "logs/uat")
 
-# Report Columns and ordering
-COLUMNS_ND = [
-    "processId",
-    "id",
-    "processDefinitionKey",
-    "properties:followingProcessDefinitionKey",
-    "properties:followingProcessId",
-]
-
-COLUMNS_COA = [
-    "processId",
-    "id",
-    "processDefinitionKey",
-    "properties:oldAddressCountry",
-    "properties:oldAddressHubID",
-]
-
-COLUMNS_CCC = [
-    "processId",
-    "id",
-    "processDefinitionKey",
-    "properties:initiatingProcessId",
-    "name",
-    "isOpen",
-    "properties:newLat",
-]
-
-COLUMNS_CANCELLED = [
-    "processId",
-    "id",
-    "processDefinitionKey",
-    "properties:initiatingProcessId",
-    "name",
-    "isOpen",
-    "properties:newLong",
-    "properties:newLat",
-]
-
-COLUMNS_DELIVERY_EXCEPTIONS = [
-    "ConsignmentID",
-    "NonDeliveryDate",
-    "startedAt",
-    "completedAt",
-    "Time Taken To Resolve Task",
-]
-
-COLUMNS_DELIVERY_EXCEPTIONS_SALESFORCE = [
-    "ConsignmentID",
-    "NonDeliveryDate",
-    "FullAddress",
-    "Suburb",
-    "Area",
-    "Township",
-]
-
-COLUMNS_DELIVERY_EXCEPTIONS_SALESFORCE_EMPTY = [
-    "ConsignmentID",
-    "NonDeliveryDate",
-    "CustomerGroupID",
-    "FullAddress",
-    "Suburb",
-    "Area",
-    "Township",
-]
-
-
-# Report Record Filters
-FILTER_ND = []
-
-FILTER_COA = ["Resolve Query", "Query Escalation"]
-
-FILTER_CCC = ["Resolve Query", "Query Escalation"]
-
-FILTER_CANCELLED = ["Resolve Query", "Query Escalation"]
-
-FILTER_BREAKFAST = ["Confirm ND Reason"]
+PATH_DVA_BY_HUB_REPORT = (
+    r"//10.0.20.55/Reports/Breakfast/Delivery Vehicle Arrival By Hub.xlsx"
+)

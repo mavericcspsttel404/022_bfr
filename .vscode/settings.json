@@ -17,9 +17,17 @@
     "python.testing.cwd": "${workspaceFolder}/tests",
     "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
     "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "material-icon-theme.folders.associations": {
+        "excel": "meta",
+        ".ruff_cache": "rust",
+        "info": "update",
+    },
     "cSpell.words": [
         "direnv",
+        "gelf",
+        "Gelf",
         "ipynb",
+        "levelname",
         "mypy",
         "pyenv",
         "pygelf",

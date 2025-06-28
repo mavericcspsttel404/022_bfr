@@ -164,6 +164,8 @@ output/
 
 # Environment variables
 .env
+.env.uat
+.env.prod
 temp*
 prod_*
 

@@ -1,5 +1,6 @@
 import sys
 
+from settings import TEST_IMPORTS_INT, TEST_IMPORTS_TEXT
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -34,6 +35,8 @@ def main() -> None:
     logger.warning("This is a warning! ⚠️")
     logger.error("Oops, an error occurred 💥")
     logger.debug(f"Debug info: {message}")
+    logger.debug(f"TEST_IMPORTS_TEXT {TEST_IMPORTS_TEXT}")
+    logger.debug(f"TEST_IMPORTS_INT {TEST_IMPORTS_INT}")
 
 
 if __name__ == "__main__":

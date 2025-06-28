@@ -15,11 +15,12 @@ import logging
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
+from typing import Optional
 
 import settings
 
 # Log directories
-LOG_DIR = Path("logs")
+LOG_DIR = Path(settings.PATH_TO_LOGS)
 ERROR_LOG_DIR = LOG_DIR / "errors"
 DEBUG_LOG_DIR = LOG_DIR / "debug"
 INFO_LOG_DIR = LOG_DIR / "info"
@@ -42,11 +43,10 @@ _detailed_formatter = logging.Formatter(
 
 # Simple formatter for Info logs
 _emoji_console_formatter = logging.Formatter("🐍 %(levelname)-8s | %(message)-60s")
-
 _file_formatter = logging.Formatter("%(asctime)s | %(levelname)-8s | %(message)-60s")
 
 
-def get_logger(name: str = None) -> logging.Logger:
+def get_logger(name: Optional[str] = None) -> logging.Logger:
     logger = logging.getLogger(name if name else "breakfast_report")
     logger.propagate = False
 
@@ -98,6 +98,6 @@ def get_logger(name: str = None) -> logging.Logger:
 
         # Set global logger level
         logger.setLevel(settings.LOG_LEVEL)
-        logger._is_configured = True  # Custom attr to prevent duplicates
+        logger._is_configured = True  # type: ignore # Custom attr to prevent duplicates
 
     return logger
