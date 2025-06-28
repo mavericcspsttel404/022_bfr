@@ -1,4 +1,4 @@
-from utils.db.exec_storedproc import exec_stored_procedure_to_df
+from utils.db.extract import exec_stored_procedure_to_df
 
 # Example connection string (update with your server, database, user, and password)
 conn_str = (

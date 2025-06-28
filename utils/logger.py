@@ -86,7 +86,7 @@ def get_logger(name: Optional[str] = None) -> logging.Logger:
         # try:
         #     gelf_handler = GelfUdpHandler(
         #         host=settings.GRAYLOG_SERVER,
-        #         port=12217,
+        #         port=settings.GRAYLOG_PORT,
         #         debug=True,
         #         include_extra_fields=True,
         #         _app_name=settings.LOG_APP_NAME,

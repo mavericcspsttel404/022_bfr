@@ -38,6 +38,12 @@ def main() -> None:
     logger.debug(f"TEST_IMPORTS_TEXT {TEST_IMPORTS_TEXT}")
     logger.debug(f"TEST_IMPORTS_INT {TEST_IMPORTS_INT}")
 
+    import pprint
+
+    from core.report import config
+
+    pprint.pprint(config)
+
 
 if __name__ == "__main__":
     main()
