@@ -64,8 +64,10 @@ def test_bulk_insert_dataframe_schema_validation(monkeypatch):
 
     df = pd.DataFrame({"id": [1, 2], "value": ["a", 2]})
     schema = {"id": int, "value": str}
-    with pytest.raises(ValueError):
+    
+    with pytest.raises(ValueError, match="Column 'value' expected type str"):
         bulk_insert_dataframe("CONN_STR", "dbo.test", df, expected_schema=schema)
+
 
 
 def test_bulk_insert_dataframe_schema_file(monkeypatch, tmp_path):
