@@ -1,6 +1,7 @@
+from settings import PATH_RPT_CFG
 from utils.utils import load_config
 
-config = load_config("reports_config.json")
+config = load_config(PATH_RPT_CFG)
 # print(config)
 
 

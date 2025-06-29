@@ -39,6 +39,8 @@ GRAYLOG_PORT = os.getenv("GRAYLOG_PORT")
 ## Hardcoded parameters
 ### Logging Config
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+PATH_RPT_CFG = os.path.join(BASE_PATH, "config", "reports_config.json")
+
 if "prod" in [arg.lower() for arg in sys.argv]:
     LOG_APP_NAME = "BreakfastReport"
     SPIKE_ALERT_TITLE = "Breakfast Report Incident"

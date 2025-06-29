@@ -4,7 +4,7 @@ from typing import Dict, Type
 
 def load_config(config_file: str) -> dict:
     """Load the configuration from the JSON file."""
-    with open("config/" + config_file, "r") as f:
+    with open(config_file, "r") as f:
         return json.load(f)
 
 
