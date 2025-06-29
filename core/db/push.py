@@ -49,9 +49,17 @@ def bulk_insert_dataframe(
         columns = df.columns.tolist()
 
     if schema_file is not None:
+        import os
+        import json
+
         if expected_schema is not None:
             raise ValueError("Provide either expected_schema or schema_file, not both")
-        expected_schema = load_schema(schema_file)
+        if not os.path.isfile(schema_file):
+            raise FileNotFoundError(f"Schema file '{schema_file}' does not exist.")
+        try:
+            expected_schema = load_schema(schema_file)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Failed to decode JSON from schema file '{schema_file}': {e}")
 
     if expected_schema is not None:
         validate_dataframe_schema(df, expected_schema)
