@@ -3,7 +3,7 @@
 ## Some project specific context and rules
 
 - We only use Microsoft sql server as our database so write logic adn tests accordingly.
-- For Salesforce use simplesalesforce library.
+- For Salesforce use simpleSalesforce library.
 - Try to use SOLID principles as much as possible.
 
 ## Dev Environment Tips
@@ -13,7 +13,8 @@
 
 ## Testing Instructions
 
-- From the package root you can just call "pytest". The commit should pass all tests before you merge.
+- From the package root you can just call "pytest".
+- The commit should pass all tests before you merge.
 - Fix any test or type errors until the whole suite is green.
 - Add or update tests for the code you change, even if nobody asked.
 

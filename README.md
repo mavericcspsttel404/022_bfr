@@ -3,22 +3,35 @@
 ## How to use
 
 1. Make sure you have uv preinstalled
-    - WINdows
-    ```code
-    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-    ```
-    - LINux
-    ```code
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    ```
+
+   - WINdows
+
+   ```code
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+   - LINux
+
+   ```code
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
 2. Clone the project
 3. Open terminal and input below commands in order
    1. uv sync
    2. .venv\Scripts\activate.bat
    3. uv run main.py
-   
-Before running the app you should create a `.env` file based on `.env.example` 
+
+Before running the app you should create a `.env` file based on `.env.example`
 and set the required credentials and database connection strings.
+
+## Setup for agents like codex
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv sync
+uv run main.py
+```
 
 ## Initial thought process
 
