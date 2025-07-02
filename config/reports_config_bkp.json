@@ -1,0 +1,42 @@
+{
+	"reports": [
+		{
+			"report_name": "test_report1",
+			"connection_string": "DB1_CONNECTION_STRING",
+			"proc_name": "proc_db1",
+			"params": ["param1", "param2"],
+			"is_proc": true,
+			"schema_file": "schemas/report1_schema.json",
+			"rename_map": {
+				"old_id": "id"
+			}
+		},
+		{
+			"report_name": "report2",
+			"connection_string": "DB2_CONNECTION_STRING",
+			"proc_name": "proc_db2",
+			"params": ["param1"],
+			"is_proc": true,
+			"schema_file": "schemas/report2_schema.json",
+			"rename_map": {}
+		},
+		{
+			"report_name": "report3",
+			"connection_string": "DB3_CONNECTION_STRING",
+			"query_file": "queries/db3_query.sql",
+			"params": ["param2"],
+			"is_proc": false,
+			"schema_file": "schemas/report3_schema.json",
+			"rename_map": {}
+		},
+		{
+			"report_name": "report4",
+			"connection_string": "EXCEL_REPORT_CONNECTION_STRING",
+			"file_path": "C:/path/to/excel_report.xlsx",
+			"is_proc": false,
+			"is_excel": true,
+			"schema_file": "schemas/report4_schema.json",
+			"rename_map": {}
+		}
+	]
+}

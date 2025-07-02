@@ -1,0 +1,7 @@
+{
+	"EmployeeID": "int",
+	"FirstName": "str",
+	"LastName": "str",
+	"Department": "str",
+	"Salary": "int"
+}
