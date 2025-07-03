@@ -3,7 +3,7 @@ from typing import Any, Dict
 import pandas as pd
 
 import settings
-from core.db.extract import with_stored_procedure
+from helper.db.extract import with_stored_procedure
 from utils.logger import get_logger
 
 logger = get_logger(__name__)

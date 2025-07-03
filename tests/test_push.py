@@ -2,7 +2,7 @@ import pandas as pd
 import pyodbc
 import pytest
 
-from core.db.push import bulk_insert_dataframe
+from helper.db.push import bulk_insert_dataframe
 
 
 class DummyCursor:

@@ -32,7 +32,7 @@ def with_stored_procedure(
             sql, tuple(params) if params else ()
         )  # Ensures no None is passed directly
         columns = [column[0] for column in cursor.description]  # type: List[str]
-        rows = cursor.fetchall()  # type: List[tuple]
+        rows = cursor.fetchall()  # type: ignore # type: List[tuple]
 
         df = pd.DataFrame.from_records(
             rows, columns=columns
@@ -62,7 +62,7 @@ def with_query(
 
         cursor.execute(query, tuple(params) if params else ())
         columns = [column[0] for column in cursor.description]  # type: List[str]
-        rows = cursor.fetchall()  # type: List[tuple]
+        rows = cursor.fetchall()  # type: ignore # type: List[tuple]
 
         df = pd.DataFrame.from_records(
             rows, columns=columns
