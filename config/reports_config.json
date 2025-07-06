@@ -9,6 +9,16 @@
 			"rename_map": {
 				"Salary": "maxSalary"
 			}
+		},
+		"test_report2": {
+			"connection_string": "DB_COL07",
+			"proc_name": "dbo.GetEmployeeByID",
+			"params": [1],
+			"is_proc": true,
+			"schema_file": "schemas/report1_schema.json",
+			"rename_map": {
+				"Salary": "maxSalary"
+			}
 		}
 	}
 }

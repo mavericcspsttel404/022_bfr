@@ -29,12 +29,14 @@ def k_add(x: int, y: int) -> int:
 
 def main() -> None:
     logger.info("🍽️ Breakfast report app started!")
+
     message = say_hello("Functional Programmer")
     print(message)
+    logger.debug("✨ Debug message")
     logger.info("✅ App finished successfully.")
-    logger.debug("Debug message ✨")
-    logger.warning("This is a warning! ⚠️")
-    logger.error("Oops, an error occurred 💥")
+    logger.warning("⚠️ This is a warning!")
+    logger.error("💥 Oops, an error occurred")
+
     logger.debug(f"Debug info: {message}")
     logger.debug(f"TEST_IMPORTS_TEXT {TEST_IMPORTS_TEXT}")
     logger.debug(f"TEST_IMPORTS_INT {TEST_IMPORTS_INT}")

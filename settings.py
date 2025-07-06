@@ -47,8 +47,8 @@ if "prod" in [arg.lower() for arg in sys.argv]:
     PATH_TO_REPORTS = os.path.join(BASE_PATH, "output")
     PATH_TO_LOGS = os.path.join(BASE_PATH, "logs")
 else:
-    LOG_APP_NAME = "BreakfastReport"
-    SPIKE_ALERT_TITLE = "Breakfast Report Incident"
+    LOG_APP_NAME = "BreakfastReport - UAT"
+    SPIKE_ALERT_TITLE = "Breakfast Report Incident (UAT)"
     PATH_TO_REPORTS = os.path.join(BASE_PATH, "output/uat")
     PATH_TO_LOGS = os.path.join(BASE_PATH, "logs/uat")
 

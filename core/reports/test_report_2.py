@@ -17,7 +17,6 @@ def extract_report_data(config: Dict[str, Any]) -> pd.DataFrame:
     # logger.info(config)
     # logger.info(settings.DB_COL06)
     # logger.info(getattr(settings, config["connection_string"]))
-    # raise ValueError("This is a test error to check logging")
     df = with_stored_procedure(
         conn_str=getattr(settings, config["connection_string"]),
         proc_name=config["proc_name"],
