@@ -4,10 +4,17 @@ import sys
 from dotenv import load_dotenv
 
 # Load environment variables
-if "prod" in [arg.lower() for arg in sys.argv]:
-    load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env.prod"))
-else:
-    load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env.uat"))
+_args = [arg.lower() for arg in sys.argv]
+env_file = ".env.prod" if "prod" in _args else ".env.uat"
+env_path = os.path.join(os.path.dirname(__file__), env_file)
+
+# Fallback to the example file if the expected file does not exist
+if not os.path.exists(env_path):
+    env_path = os.path.join(os.path.dirname(__file__), ".env.example")
+
+# Load the environment file if present and also any variables from the
+# environment itself
+load_dotenv(env_path)
 load_dotenv()
 
 ### Imports to make sure dotenv library works as expected
