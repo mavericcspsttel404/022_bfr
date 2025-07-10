@@ -3,6 +3,14 @@ import sys
 
 from dotenv import load_dotenv
 
+args = [arg.lower() for arg in sys.argv]
+
+# Check presence of each flag
+custom = "custom" in args
+update = "update" in args
+uat = "uat" in args
+prod = "prod" in args
+
 # Load environment variables
 _args = [arg.lower() for arg in sys.argv]
 env_file = ".env.prod" if "prod" in _args else ".env.uat"
@@ -17,13 +25,17 @@ if not os.path.exists(env_path):
 load_dotenv(env_path)
 load_dotenv()
 
+
 ### Imports to make sure dotenv library works as expected
 TEST_IMPORTS = os.getenv("TEST_IMPORTS")
 TEST_IMPORTS_TEXT = os.getenv("TEST_IMPORTS_TEXT")
 TEST_IMPORTS_INT = os.getenv("TEST_IMPORTS_INT")
 
 ## Imported parameters
-ALFRESCO_CREDENTIALS = os.getenv("ALFRESCO_USERNAME"), os.getenv("ALFRESCO_PASSWORD")
+ALFRESCO_CREDENTIALS = (
+    os.getenv("ALFRESCO_USERNAME"),
+    os.getenv("ALFRESCO_PASSWORD"),
+)
 SPIKE_ALERT_WEBHOOK = os.getenv("SPIKE_ALERT_WEBHOOK")
 
 SALESFORCE_USERNAME = os.getenv("SALESFORCE_USERNAME")
@@ -47,6 +59,7 @@ GRAYLOG_PORT = os.getenv("GRAYLOG_PORT")
 ### Logging Config
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 PATH_RPT_CFG = os.path.join(BASE_PATH, "config", "reports_config.json")
+PATH_RPT_EXCEL_OUTPUT = os.path.join(BASE_PATH, "output", "result.xlsx")
 
 if "prod" in [arg.lower() for arg in sys.argv]:
     LOG_APP_NAME = "BreakfastReport"
