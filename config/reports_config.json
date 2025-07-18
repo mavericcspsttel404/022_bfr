@@ -2,13 +2,12 @@
 	"reports": {
 		"test_report1": {
 			"connection_string": "DB_COL06",
+			"push_connection_string": "DB_SQL01",
 			"proc_name": "dbo.GetAllEmployees",
 			"params": [],
 			"is_proc": true,
-			"schema_file": "schemas/report1_schema.json",
-			"rename_map": {
-				"Salary": "maxSalary"
-			}
+			"table_name": "test_report1",
+			"schema_file": "./config/schemas/report1_schema.json"
 		},
 		"test_report2": {
 			"connection_string": "DB_COL07",

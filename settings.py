@@ -48,7 +48,7 @@ SALESFORCE_LOGIN_URL = "https://login.salesforce.com/services/oauth2/token"
 DB_COL06 = os.getenv("DB_COL06")
 DB_COL07 = os.getenv("DB_COL07")
 DB_COL10 = os.getenv("DB_COL10")
-DB_DW_REPORTING = os.getenv("DB_DW_REPORTING")
+DB_SQL01 = os.getenv("DB_SQL01")
 
 BASE_URL = os.getenv("BASE_URL")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")

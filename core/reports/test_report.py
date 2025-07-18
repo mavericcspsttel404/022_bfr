@@ -4,6 +4,7 @@ import pandas as pd
 
 import settings
 from helper.db.extract import with_stored_procedure
+from helper.db.push import bulk_insert_dataframe
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -33,8 +34,17 @@ def generate_report():
     pass
 
 
-def push_report_data():
+def push_report_data(df, config: Dict[str, Any]):
     """
     Pushes the generated report data to the specified destination.
     """
-    pass
+    bulk_insert_dataframe(
+        # conn_str=getattr(settings, config["connection_string"]),
+        conn_str=getattr(settings, config["push_connection_string"]),
+        table_name=config["table_name"],
+        df=df,
+        columns=None,
+        expected_schema=None,
+        schema_file=config["schema_file"],
+        rename_map=None,
+    )
