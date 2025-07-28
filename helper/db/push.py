@@ -21,7 +21,6 @@ def validate_dataframe_schema(
         if (
             not non_null.empty
             and not non_null.map(lambda x: isinstance(x, col_type)).all()
-            and col_type is not str
         ):
             raise ValueError(
                 # f"Column {col} has incorrect type {non_null.map(lambda x: isinstance(x, col_type)).all()}"
