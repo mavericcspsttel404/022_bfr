@@ -18,6 +18,7 @@ def validate_dataframe_schema(
             raise ValueError(f"Missing required column: {col}")
         # allow NaN values but check non-null values for type
         non_null = df[col].dropna()
+
         if not non_null.empty and not non_null.map(lambda x: isinstance(x, col_type)).all():
             raise ValueError(
                 # f"Column {col} has incorrect type {non_null.map(lambda x: isinstance(x, col_type)).all()}"

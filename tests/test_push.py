@@ -113,6 +113,7 @@ def test_bulk_insert_dataframe_rename(monkeypatch):
     expected_sql = "INSERT INTO dbo.test (id,value) VALUES (?,?)"
     assert dummy_conn.cursor_obj.executed_sql == expected_sql
     assert dummy_conn.cursor_obj.executed_params == [(1, "a"), (2, "b")]
+    assert dummy_conn.committed is True
 
 
 def test_bulk_insert_dataframe_partial_rename(monkeypatch):
@@ -139,6 +140,7 @@ def test_bulk_insert_dataframe_partial_rename(monkeypatch):
     expected_sql = "INSERT INTO dbo.test (id,value) VALUES (?,?)"
     assert dummy_conn.cursor_obj.executed_sql == expected_sql
     assert dummy_conn.cursor_obj.executed_params == [(1, "a"), (2, "b")]
+    assert dummy_conn.committed is True
 
 
 def test_bulk_insert_dataframe_columns_and_rename(monkeypatch):
@@ -173,3 +175,4 @@ def test_bulk_insert_dataframe_columns_and_rename(monkeypatch):
     expected_sql = "INSERT INTO dbo.test (id,value) VALUES (?,?)"
     assert dummy_conn.cursor_obj.executed_sql == expected_sql
     assert dummy_conn.cursor_obj.executed_params == [(1, "a"), (2, "b")]
+    assert dummy_conn.committed is True
