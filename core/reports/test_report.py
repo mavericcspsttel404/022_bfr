@@ -39,7 +39,7 @@ def push_report_data(df, config: Dict[str, Any]):
     Pushes the generated report data to the specified destination.
     """
     bulk_insert_dataframe(
-        # conn_str=getattr(settings, config["connection_string"]),
+        # push_connection_string is used for inserting the report data
         conn_str=getattr(settings, config["push_connection_string"]),
         table_name=config["table_name"],
         df=df,
