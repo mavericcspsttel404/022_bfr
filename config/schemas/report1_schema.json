@@ -3,5 +3,5 @@
 	"FirstName": "str",
 	"LastName": "str",
 	"Department": "str",
-	"Salary": "str"
+	"Salary": "decimal"
 }

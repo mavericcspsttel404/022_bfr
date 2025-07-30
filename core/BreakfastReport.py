@@ -32,7 +32,7 @@ def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
         )
     except Exception as e:
         handle_exception(e)
-        return 2
+        # return 2
 
     try:
         # raise ValueError("This is a test error to check logging")
@@ -41,7 +41,7 @@ def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
         )
     except Exception as e:
         handle_exception(e)
-        return 3
+        # return 3
 
     try:
         dfs["DeliveryVehicleArrivalByHub"] = (
@@ -51,7 +51,7 @@ def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
         )
     except Exception as e:
         handle_exception(e)
-        return 3
+        # return 4
 
     return dfs
 
@@ -75,10 +75,16 @@ def push_report_data(dfs):
     Pushes the generated report data to the specified destination.
     """
     try:
+        # logger.warning(f"{dfs=}")
+        # logger.warning(f"{dfs["test_report1"]=}")
         test_report.push_report_data(
             dfs["test_report1"], config["reports"]["test_report1"]
         )
     except Exception as e:
+        logger.error(
+            "The report probably failed to run \n\
+                    Please ensure the dictionary has required values"
+        )
         handle_exception(e)
         return 2
     pass

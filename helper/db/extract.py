@@ -26,7 +26,11 @@ def with_stored_procedure(
         cursor = conn.cursor()  # type: pyodbc.Cursor
 
         placeholders = ",".join(["?"] * len(params)) if params else ""
-        sql = f"EXEC {proc_name} {placeholders}" if params else f"EXEC {proc_name}"
+        sql = (
+            f"EXEC {proc_name} {placeholders}"
+            if params
+            else f"EXEC {proc_name}"
+        )
 
         cursor.execute(
             sql, tuple(params) if params else ()
@@ -54,8 +58,6 @@ def with_query(
     Returns:
         pd.DataFrame: Result set as a DataFrame.
     """
-    if params is None:
-        params = []
 
     with pyodbc.connect(conn_str) as conn:  # type: ignore # type: pyodbc.Connection
         cursor = conn.cursor()  # type: pyodbc.Cursor

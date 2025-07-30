@@ -18,6 +18,16 @@
 			"rename_map": {
 				"Salary": "maxSalary"
 			}
+		},
+		"SalesforceDeliveryExceptions": {
+			"connection_string": "DB_COL07",
+			"is_proc": false,
+			"sql": "DeliveryExceptions.sql",
+			"params": [1],
+			"schema_file": "schemas/report1_schema.json",
+			"rename_map": {
+				"Salary": "maxSalary"
+			}
 		}
 	}
 }
