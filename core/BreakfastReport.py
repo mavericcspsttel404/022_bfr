@@ -12,23 +12,26 @@ from utils.utils import load_config
 
 logger = get_logger(__name__)
 config = load_config(PATH_RPT_CFG)
+reports_config = config["reports"]
 
 
 def run_breakfast_report():
-    dfs = extract_data(config)
+    dfs = extract_data(reports_config, params=config["params"])
     generate_report(dfs)
     push_report_data(dfs)
 
 
-def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
+def extract_data(
+    reports_config: Dict[str, Any], params: Dict[str, Any]
+) -> dict[str, pd.DataFrame] | int:
     """
     Extracts data for the breakfast report.
     """
     dfs = {}
-    # logger.info(config["reports"]["test_report1"])
+    # logger.info(reports_config["test_report1"])
     try:
         dfs["test_report1"] = test_report.extract_report_data(
-            config["reports"]["test_report1"]
+            reports_config["test_report1"]
         )
     except Exception as e:
         handle_exception(e)
@@ -37,7 +40,7 @@ def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
     try:
         # raise ValueError("This is a test error to check logging")
         dfs["test_report2"] = test_report_2.extract_report_data(
-            config["reports"]["test_report2"]
+            reports_config["test_report2"]
         )
     except Exception as e:
         handle_exception(e)
@@ -46,7 +49,7 @@ def extract_data(config: Dict[str, Any]) -> dict[str, pd.DataFrame] | int:
     try:
         dfs["DeliveryVehicleArrivalByHub"] = (
             DeliveryVehicleArrivalByHub.extract_report_data(
-                config["reports"]["test_report2"]
+                reports_config["test_report2"]
             )
         )
     except Exception as e:
@@ -78,7 +81,7 @@ def push_report_data(dfs):
         # logger.warning(f"{dfs=}")
         # logger.warning(f"{dfs["test_report1"]=}")
         test_report.push_report_data(
-            dfs["test_report1"], config["reports"]["test_report1"]
+            dfs["test_report1"], reports_config["test_report1"]
         )
     except Exception as e:
         logger.error(

@@ -1,19 +1,27 @@
 {
+	"params": {
+		"report_date": "2025-08-02",
+		"start_date": "2025-08-01",
+		"end_date": "2025-08-02",
+		"generate_excel": true,
+		"push_to_reporting_db": false
+	},
+
 	"reports": {
 		"test_report1": {
+			"is_proc": true,
 			"connection_string": "DB_COL06",
-			"push_connection_string": "DB_SQL01",
 			"proc_name": "dbo.GetAllEmployees",
 			"params": [],
-			"is_proc": true,
 			"table_name": "test_report1",
-			"schema_file": "./config/schemas/report1_schema.json"
+			"schema_file": "./config/schemas/report1_schema.json",
+			"push_connection_string": "DB_SQL01"
 		},
 		"test_report2": {
+			"is_proc": true,
 			"connection_string": "DB_COL07",
 			"proc_name": "dbo.GetEmployeeByID",
 			"params": [1],
-			"is_proc": true,
 			"schema_file": "schemas/report1_schema.json",
 			"rename_map": {
 				"Salary": "maxSalary"

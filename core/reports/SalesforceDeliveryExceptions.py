@@ -6,7 +6,7 @@ import pandas as pd
 import settings
 from helper.db.extract import with_stored_procedure
 from helper.db.push import bulk_insert_dataframe
-from helper.salesforce import get_cases_from_salesforce
+from helper.salesforce.extract import get_cases_from_salesforce
 from utils import utils
 from utils.logger import get_logger
 
@@ -17,20 +17,18 @@ def extract_report_data(config: Dict[str, Any]) -> None:  # pd.DataFrame:
     """
     Extracts data for the specified report type from the configuration.
     """
-    # ^ result 2 - deliverexceptions form db
+    # ^ result 2 - deliveryExceptions from db
     df = with_stored_procedure(
         conn_str=getattr(settings, config["connection_string"]),
         proc_name=config["proc_name"],
         params=config.get("params", []),
     )
 
-    # fmt: off
-    # fmt: on
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     columns = settings.COLUMNS_DELIVERY_EXCEPTIONS_SALESFORCE
     logger.debug(f"Getting Salesforce case data {datetime.now()}")
 
-    data = get_cases_from_salesforce()
+    data = get_cases_from_salesforce(start_dt="", end_dt="")
     if data.empty:
         logger.info("Empty Salesforce case data, skipping processing")
         return
@@ -101,7 +99,7 @@ def format_and_calculate_fields(result2):
         utils.fix_case_outcome, axis=1
     )
     result2["Time Bracket"] = result2["NonDeliveryDT"].apply(
-        utils.get_timebracket_from_time
+        utils.get_timeBracket_from_time
     )
 
     for col in [

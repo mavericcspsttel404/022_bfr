@@ -11,6 +11,9 @@ update = "update" in args
 uat = "uat" in args
 prod = "prod" in args
 
+CUSTOM = custom
+UPDATE = update
+
 # Load environment variables
 _args = [arg.lower() for arg in sys.argv]
 env_file = ".env.prod" if "prod" in _args else ".env.uat"
@@ -40,6 +43,8 @@ SPIKE_ALERT_WEBHOOK = os.getenv("SPIKE_ALERT_WEBHOOK")
 
 SALESFORCE_USERNAME = os.getenv("SALESFORCE_USERNAME")
 SALESFORCE_PASSWORD = os.getenv("SALESFORCE_PASSWORD")
+SALESFORCE_SECURITY_TOKEN = os.getenv("SALESFORCE_SECURITY_TOKEN")
+
 SALESFORCE_CLIENT_ID = os.getenv("SALESFORCE_CLIENT_ID")
 SALESFORCE_CLIENT_SECRET = os.getenv("SALESFORCE_CLIENT_SECRET")
 SALESFORCE_LOGIN_URL = "https://login.salesforce.com/services/oauth2/token"

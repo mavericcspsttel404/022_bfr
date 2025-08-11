@@ -177,6 +177,7 @@ def time_from_datetime(d):
 
 
 def fix_case_outcome(x):
+    string = None
     try:
         string = x["NDV_Task_Outcome__c"]
         caseType = x["Case_Type__c"]
@@ -201,10 +202,10 @@ def fix_case_outcome(x):
             extra={"input": string},
         )
         logger.exception(e)
-        return "UNKOWN"
+        return "UNKNOWN"
 
 
-def get_timebracket_from_time(string):
+def get_timeBracket_from_time(string):
     try:
         if string != string:
             # logger.debug("string is not a datetime", extra={"input": {"string": str(string)}})
@@ -226,7 +227,7 @@ def get_timebracket_from_time(string):
 
     except Exception as e:
         logger.exception(e)
-        return "UNKOWN"
+        return "UNKNOWN"
 
 
 def get_dataframe_from_salesforce():

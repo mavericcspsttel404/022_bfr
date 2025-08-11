@@ -10,7 +10,9 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def extract_report_data(config: Dict[str, Any]) -> pd.DataFrame:
+def extract_report_data(
+    config: Dict[str, Any], **kwargsconfig: Dict[str, Any]
+) -> pd.DataFrame:
     """
     Extracts data for the specified report type from the configuration.
     """
