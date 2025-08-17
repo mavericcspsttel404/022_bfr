@@ -7,9 +7,45 @@
 		"start_date": "2025-08-01"
 	},
 	"reports": {
+		"ConsignmentsUnconsigned": {
+			"connection_string": "DB_COL06",
+			"is_proc": true,
+			"params": [],
+			"proc_name": "RAMTnTv1.dbo.usp_RPT_Consignments_Unconsigned",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
+		},
+		"DeliverySummaryByHub": {
+			"connection_string": "DB_COL06",
+			"is_proc": true,
+			"params": ["Delivery Summary by Hub", "All", 1],
+			"proc_name": "RAMTnTv1.dbo.usp_Reports_Delivery_Summary_by_Hub",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
+		},
 		"DeliveryVehicleArrivalByHub": {
 			"is_proc": false,
 			"path": "//10.0.20.55/Reports/Breakfast/Delivery Vehicle Arrival By Hub.xlsx"
+		},
+		"LabelReprintLog": {
+			"connection_string": "DB_COL07",
+			"is_proc": true,
+			"params": ["Yesterday", "ALL", "ALL", "ALL", "NULL", "NULL"],
+			"proc_name": "RAMTnTv1.dbo.usp_RPT_PrintLog_LabelReprints_V2",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
+		},
+		"LostOrStolenYesterday": {
+			"connection_string": "DB_COL06",
+			"is_proc": true,
+			"params": [],
+			"proc_name": "RAMTnTv1.dbo.usp_RPT_LostStolenLastWeek",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
 		},
 		"MorningExceptions": {
 			"connection_string": "DB_COL10",
@@ -17,6 +53,24 @@
 			"params": [],
 			"schema_file": "schemas/MorningExceptions.json",
 			"sql": "MorningExceptions.sql"
+		},
+		"PODScansDaysBehind": {
+			"connection_string": "DB_COL06",
+			"is_proc": true,
+			"params": [],
+			"proc_name": "RAMTnTv1.dbo.usp_RPT_PODScans_DaysBehind",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
+		},
+		"ReceivedByInvalidYesterday": {
+			"connection_string": "DB_COL06",
+			"is_proc": true,
+			"params": [],
+			"proc_name": "RAMTnTv1.dbo.usp_RPT_ReceivedByInvalidYesterday",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
 		},
 		"SalesforceDeliveryExceptions": {
 			"connection_string": "DB_COL06",
@@ -32,7 +86,7 @@
 			"connection_string": "DB_COL07",
 			"is_proc": true,
 			"params": [],
-			"proc_name": "dbo.GetAllEmployees",
+			"proc_name": "TestDB.dbo.GetAllEmployees",
 			"push_connection_string": "DB_SQL01",
 			"schema_file": "./config/schemas/report1_schema.json",
 			"table_name": "test_report1"

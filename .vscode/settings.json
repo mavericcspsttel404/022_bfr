@@ -30,12 +30,14 @@
         "ipynb",
         "levelname",
         "mypy",
+        "NOCOUNT",
         "pyenv",
         "pygelf",
         "pypackages",
         "pytest",
         "pythonpath",
         "pytype",
+        "Unconsigned",
         "venv"
     ],
 }

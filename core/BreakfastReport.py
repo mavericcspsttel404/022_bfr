@@ -4,8 +4,14 @@ from typing import Any, Dict
 import pandas as pd
 
 from core.reports import (
+    ConsignmentsUnconsigned,
+    DeliverySummaryByHub,
     DeliveryVehicleArrivalByHub,
+    LabelReprintLog,
+    LostOrStolenYesterday,
     MorningExceptions,
+    PODScansDaysBehind,
+    ReceivedByInvalidYesterday,
     SalesforceDeliveryExceptions,
     test_report,
     test_report_2,
@@ -36,6 +42,89 @@ def extract_data(
     """
     dfs = {}
     # logger.info(reports_config["test_report1"])
+
+    try:
+        dfs["ConsignmentsUnconsigned"] = (
+            ConsignmentsUnconsigned.extract_report_data(
+                reports_config["ConsignmentsUnconsigned"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["DeliverySummaryByHub"] = DeliverySummaryByHub.extract_report_data(
+            reports_config["DeliverySummaryByHub"]
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["DeliveryVehicleArrivalByHub"] = (
+            DeliveryVehicleArrivalByHub.extract_report_data(
+                reports_config["test_report2"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 99
+
+    try:
+        dfs["LabelReprintLog"] = LabelReprintLog.extract_report_data(
+            reports_config["LabelReprintLog"]
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["LostOrStolenYesterday"] = (
+            LostOrStolenYesterday.extract_report_data(
+                reports_config["LostOrStolenYesterday"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["MorningExceptions"] = MorningExceptions.extract_report_data(
+            reports_config["MorningExceptions"]
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["PODScansDaysBehind"] = PODScansDaysBehind.extract_report_data(
+            reports_config["PODScansDaysBehind"]
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["ReceivedByInvalidYesterday"] = (
+            ReceivedByInvalidYesterday.extract_report_data(
+                reports_config["ReceivedByInvalidYesterday"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 4
+
+    try:
+        dfs["SalesforceDeliveryExceptions"] = (
+            SalesforceDeliveryExceptions.extract_report_data(
+                reports_config["SalesforceDeliveryExceptions"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 3
+
     try:
         dfs["test_report1"] = test_report.extract_report_data(
             reports_config["test_report1"]
@@ -62,35 +151,6 @@ def extract_data(
         handle_exception(e)
         # return 0
 
-    try:
-        dfs["DeliveryVehicleArrivalByHub"] = (
-            DeliveryVehicleArrivalByHub.extract_report_data(
-                reports_config["test_report2"]
-            )
-        )
-    except Exception as e:
-        handle_exception(e)
-        # return 99
-
-    try:
-        dfs["SalesforceDeliveryExceptions"] = (
-            SalesforceDeliveryExceptions.extract_report_data(
-                reports_config["SalesforceDeliveryExceptions"]
-            )
-        )
-    except Exception as e:
-        handle_exception(e)
-        # return 3
-
-    try:
-        dfs["MorningExceptions"] = MorningExceptions.extract_report_data(
-            reports_config["MorningExceptions"]
-        )
-    except Exception as e:
-        handle_exception(e)
-        # return 4
-
-    # TODO ! WIP on line 283 # consignments unconsigned (5)
     return dfs
 
 
@@ -101,10 +161,10 @@ def generate_report(dfs):
     if isinstance(dfs, int):
         return dfs
     else:
-        # # list(map(logger.info, dfs.values()))
-        # for key, value in dfs.items():
-        #     logger.info(f"{key}\n{value}\n")
-        #     # pprint.pprint(value)
+        # list(map(logger.info, dfs.values()))
+        for key, value in dfs.items():
+            logger.info(f"{key}\n{value}\n")
+            # pprint.pprint(value)
         save_large_dfs_to_excel(dfs, PATH_RPT_EXCEL_OUTPUT)
 
 

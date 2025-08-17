@@ -18,18 +18,20 @@ def with_stored_procedure(
     Returns:
         pd.DataFrame: Result set as a DataFrame.
     """
+    # Handle None/NULLS in params since we cant do it in JSON config files
     if params is None:
         params = []
-
+    else:
+        params = [None if item == "NULL" else item for item in params]
     # Type annotations for connection and cursor
     with pyodbc.connect(conn_str) as conn:  # type: ignore # type: pyodbc.Connection
         cursor = conn.cursor()  # type: pyodbc.Cursor
 
         placeholders = ",".join(["?"] * len(params)) if params else ""
         sql = (
-            f"EXEC {proc_name} {placeholders}"
+            f"SET NOCOUNT ON; EXEC {proc_name} {placeholders}"
             if params
-            else f"EXEC {proc_name}"
+            else f"SET NOCOUNT ON; EXEC {proc_name}"
         )
 
         cursor.execute(
@@ -63,6 +65,7 @@ def with_query(
         cursor = conn.cursor()  # type: pyodbc.Cursor
 
         cursor.execute(read_file_content(sql), tuple(params) if params else ())
+
         columns = [column[0] for column in cursor.description]  # type: List[str]
         rows = cursor.fetchall()  # type: ignore # type: List[tuple]
 

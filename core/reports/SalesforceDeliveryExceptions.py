@@ -25,9 +25,6 @@ def extract_report_data(
         sql=config["sql"],
         params=config.get("params", []),
     )
-
-    # columns = settings.COLUMNS_DELIVERY_EXCEPTIONS_SALESFORCE
-    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     logger.debug(f"Getting Salesforce case data {datetime.now()}")
 
     # data = get_cases_from_salesforce(start_dt="", end_dt="")
