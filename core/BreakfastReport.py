@@ -3,7 +3,14 @@ from typing import Any, Dict
 
 import pandas as pd
 
-from core.reports import DeliveryVehicleArrivalByHub, test_report, test_report_2
+from core.reports import (
+    DeliveryVehicleArrivalByHub,
+    MorningExceptions,
+    SalesforceDeliveryExceptions,
+    test_report,
+    test_report_2,
+    test_report_3,
+)
 from helper.excel.save import save_large_dfs_to_excel
 from helper.exceptionHandler import handle_exception
 from settings import PATH_RPT_CFG, PATH_RPT_EXCEL_OUTPUT
@@ -18,7 +25,7 @@ reports_config = config["reports"]
 def run_breakfast_report():
     dfs = extract_data(reports_config, params=config["params"])
     generate_report(dfs)
-    push_report_data(dfs)
+    # push_report_data(dfs)
 
 
 def extract_data(
@@ -35,7 +42,7 @@ def extract_data(
         )
     except Exception as e:
         handle_exception(e)
-        # return 2
+        # return 0
 
     try:
         # raise ValueError("This is a test error to check logging")
@@ -44,7 +51,16 @@ def extract_data(
         )
     except Exception as e:
         handle_exception(e)
-        # return 3
+        # return 0
+
+    try:
+        # raise ValueError("This is a test error to check logging")
+        dfs["test_report3"] = test_report_3.extract_report_data(
+            reports_config["test_report3"]
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 0
 
     try:
         dfs["DeliveryVehicleArrivalByHub"] = (
@@ -54,8 +70,27 @@ def extract_data(
         )
     except Exception as e:
         handle_exception(e)
+        # return 99
+
+    try:
+        dfs["SalesforceDeliveryExceptions"] = (
+            SalesforceDeliveryExceptions.extract_report_data(
+                reports_config["SalesforceDeliveryExceptions"]
+            )
+        )
+    except Exception as e:
+        handle_exception(e)
+        # return 3
+
+    try:
+        dfs["MorningExceptions"] = MorningExceptions.extract_report_data(
+            reports_config["MorningExceptions"]
+        )
+    except Exception as e:
+        handle_exception(e)
         # return 4
 
+    # TODO ! WIP on line 283 # consignments unconsigned (5)
     return dfs
 
 
@@ -66,10 +101,10 @@ def generate_report(dfs):
     if isinstance(dfs, int):
         return dfs
     else:
-        # list(map(logger.info, dfs.values()))
-        for key, value in dfs.items():
-            logger.info(f"{key}\n{value}\n")
-            # pprint.pprint(value)
+        # # list(map(logger.info, dfs.values()))
+        # for key, value in dfs.items():
+        #     logger.info(f"{key}\n{value}\n")
+        #     # pprint.pprint(value)
         save_large_dfs_to_excel(dfs, PATH_RPT_EXCEL_OUTPUT)
 
 

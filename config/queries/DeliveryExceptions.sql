@@ -1,7 +1,7 @@
-USE[TestDB]
-SELECT TOP(1)
-    *
-FROM 
+SELECT *
+FROM [RAMTnTv1].[dbo].[DeliveryExceptions]
+
+-- USE [RAMTnTv1]
 -- declare @HubID nvarchar(100)
 
 -- --set @HubID = null

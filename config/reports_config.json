@@ -1,41 +1,58 @@
 {
 	"params": {
-		"report_date": "2025-08-02",
-		"start_date": "2025-08-01",
 		"end_date": "2025-08-02",
 		"generate_excel": true,
-		"push_to_reporting_db": false
+		"push_to_reporting_db": false,
+		"report_date": "2025-08-02",
+		"start_date": "2025-08-01"
 	},
-
 	"reports": {
-		"test_report1": {
-			"is_proc": true,
-			"connection_string": "DB_COL06",
-			"proc_name": "dbo.GetAllEmployees",
-			"params": [],
-			"table_name": "test_report1",
-			"schema_file": "./config/schemas/report1_schema.json",
-			"push_connection_string": "DB_SQL01"
+		"DeliveryVehicleArrivalByHub": {
+			"is_proc": false,
+			"path": "//10.0.20.55/Reports/Breakfast/Delivery Vehicle Arrival By Hub.xlsx"
 		},
-		"test_report2": {
-			"is_proc": true,
-			"connection_string": "DB_COL07",
-			"proc_name": "dbo.GetEmployeeByID",
-			"params": [1],
-			"schema_file": "schemas/report1_schema.json",
-			"rename_map": {
-				"Salary": "maxSalary"
-			}
+		"MorningExceptions": {
+			"connection_string": "DB_COL10",
+			"is_proc": false,
+			"params": [],
+			"schema_file": "schemas/MorningExceptions.json",
+			"sql": "MorningExceptions.sql"
 		},
 		"SalesforceDeliveryExceptions": {
-			"connection_string": "DB_COL07",
+			"connection_string": "DB_COL06",
 			"is_proc": false,
-			"sql": "DeliveryExceptions.sql",
-			"params": [1],
-			"schema_file": "schemas/report1_schema.json",
+			"params": [],
 			"rename_map": {
 				"Salary": "maxSalary"
-			}
+			},
+			"schema_file": "schemas/SalesforceDeliveryExceptions.json",
+			"sql": "DeliveryExceptions.sql"
+		},
+		"test_report1": {
+			"connection_string": "DB_COL07",
+			"is_proc": true,
+			"params": [],
+			"proc_name": "dbo.GetAllEmployees",
+			"push_connection_string": "DB_SQL01",
+			"schema_file": "./config/schemas/report1_schema.json",
+			"table_name": "test_report1"
+		},
+		"test_report2": {
+			"connection_string": "DB_COL07",
+			"is_proc": true,
+			"params": [1],
+			"proc_name": "dbo.GetEmployeeByID",
+			"rename_map": {
+				"Salary": "maxSalary"
+			},
+			"schema_file": "schemas/report1_schema.json"
+		},
+		"test_report3": {
+			"connection_string": "DB_COL07",
+			"is_proc": false,
+			"params": [],
+			"schema_file": "schemas/test_report3.json",
+			"sql": "test_report3.sql"
 		}
 	}
 }

@@ -33,6 +33,16 @@ uv sync
 uv run main.py
 ```
 
+## Some strict practices to follow
+
+1. Keep the code clean and readable.
+2. Use proper comments and docstrings.
+3. Use proper naming conventions.
+4. Use proper error handling.
+5. Use proper logging.
+6. Use proper testing.
+7. Start sql query with SELECT and not USE [Database] and make sure all the sources have database name in them
+
 ## Initial thought process
 
 1. Use latest stable libraries for better stability and performance

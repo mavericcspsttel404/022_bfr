@@ -45,7 +45,7 @@ def with_stored_procedure(
 
 
 def with_query(
-    conn_str: str, query: str, params: Optional[List[Any]] = None
+    conn_str: str, sql: str, params: Optional[List[Any]] = None
 ) -> pd.DataFrame:
     """
     Executes a SQL query on Microsoft SQL Server and returns the result as a pandas DataFrame.
@@ -62,7 +62,7 @@ def with_query(
     with pyodbc.connect(conn_str) as conn:  # type: ignore # type: pyodbc.Connection
         cursor = conn.cursor()  # type: pyodbc.Cursor
 
-        cursor.execute(query, tuple(params) if params else ())
+        cursor.execute(read_file_content(sql), tuple(params) if params else ())
         columns = [column[0] for column in cursor.description]  # type: List[str]
         rows = cursor.fetchall()  # type: ignore # type: List[tuple]
 
@@ -70,3 +70,18 @@ def with_query(
             rows, columns=columns
         )  # Ensure that from_records is correctly used
     return df
+
+
+def read_file_content(file_path: str) -> str:
+    """
+    Reads the content of a file and returns it as a string.
+
+    Args:
+        file_path: The full path to the file.
+
+    Returns:
+        The content of the file as a string, or None if an error occurs.
+    """
+    with open("./config/queries/" + file_path, "r", encoding="utf-8") as file:
+        content = file.read()
+        return content
