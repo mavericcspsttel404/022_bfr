@@ -76,6 +76,12 @@
 			"connection_string": "DB_COL06",
 			"is_proc": false,
 			"params": [],
+			"push": {
+				"proc_name": "RAMTnTv1.dbo.usp_RPT_ReceivedByInvalidYesterday",
+				"push_connection_string": "DB_SQL01",
+				"schema_file": "./config/schemas/SalesforceDeliveryExceptions.json",
+				"table_name": "SalesforceDeliveryExceptions_temp"
+			},
 			"rename_map": {
 				"Salary": "maxSalary"
 			},
